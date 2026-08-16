@@ -9,11 +9,24 @@
 
 import acm.program.*;
 import acm.util.*;
+import java.util.*;
 
 public class CS106A_MathQuiz extends ConsoleProgram
 {	
+	/** Named constants */
+	private final static String s1 = "Well done! Is your name Albert by chance?";
+	private final static String s2 = "Correct!";
+	private final static String s3 = "Amazing! Good work.";
+	private final static String s4 = "That's the answer!";
+	private final static String s5 = "You got it!";
+	
 	public void run()
 	{
+		winArray.add(s1);
+		winArray.add(s2);
+		winArray.add(s3);
+		winArray.add(s4);
+		winArray.add(s5);
 		println("Welcome to Math Quiz.");
 		beginQuiz();
 	}
@@ -27,9 +40,10 @@ public class CS106A_MathQuiz extends ConsoleProgram
 	{	
 		String problemRetry = "That's incorrect - try a different answer: ";
 		String problemFail = "No, the answer is ";
-		String problemSuccess = "That's the answer!";
 		
 		for (int i = 0; i < 5; i++){
+			int n = rgen.nextInt(0,winArray.size()-1);
+			String problemSuccess = winArray.get(n);
 			String initialProblem = "What is " + generateRandomOperation() + "? ";
 			int tries = 3;
 			
@@ -80,6 +94,7 @@ public class CS106A_MathQuiz extends ConsoleProgram
 	private int r1;
 	private int r2;
 	private String operator;
-	int expectedAnswer;
+	private int expectedAnswer;
+	private ArrayList<String> winArray = new ArrayList<String>();
 	private static RandomGenerator rgen = RandomGenerator.getInstance();
 }
