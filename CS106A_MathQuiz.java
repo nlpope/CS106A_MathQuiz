@@ -12,10 +12,7 @@ import acm.util.*;
 import java.util.*;
 
 public class CS106A_MathQuiz extends ConsoleProgram
-{
-	/** Named Constants */
-	
-	
+{	
 	public void run()
 	{
 		println("Welcome to Math Quiz.");
@@ -25,22 +22,24 @@ public class CS106A_MathQuiz extends ConsoleProgram
 	
 	private void beginQuiz()
 	{	
-		String initialProblem = "What is " + generateRandomOperation() + "?";
 		String problemRetry = "That's incorrect - try a different answer: ";
 		String problemFail = "No, the answer is ";
+		String problemSuccess = "That's the answer!";
 		
 		for (int i = 0; i < 5; i++){
+			String initialProblem = "What is " + generateRandomOperation() + "? ";
 			int tries = 3;
 			
 			while(true){
 				int userAnswer = readInt((tries < 3) ? problemRetry : initialProblem);
 				tries--;
-				if (analyzeAnswer(userAnswer)) break;
-				else if (tries < 1) println(problemFail + expectedAnswer); break;
+				if (analyzeAnswer(userAnswer)) { println(problemSuccess); break; }
+				else if (tries < 1) { println(problemFail + expectedAnswer); break; }
 			}
 			
-			println("That's the answer!");
+			println();
 		}
+		println("Well done, padewon! Until next time.");
 	}
 	
 	
@@ -59,7 +58,7 @@ public class CS106A_MathQuiz extends ConsoleProgram
 	private boolean analyzeAnswer(int ans)
 	{
 		boolean result;
-		expectedAnswer = operator == "+" ? r1 + r2 : r1 - r2;
+		expectedAnswer = operator.equals("+") ? r1 + r2 : r1 - r2;
 		if (ans == expectedAnswer) result = true;
 		else result = false;
 		return result;
