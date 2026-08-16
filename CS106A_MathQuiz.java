@@ -9,7 +9,6 @@
 
 import acm.program.*;
 import acm.util.*;
-import java.util.*;
 
 public class CS106A_MathQuiz extends ConsoleProgram
 {	
@@ -19,7 +18,11 @@ public class CS106A_MathQuiz extends ConsoleProgram
 		beginQuiz();
 	}
 	
-	
+	/**
+	 * Starts the quiz by first populating its various resulting
+	 * messages to the client and setting up loops to ensure 5 
+	 * questions are asked and three attempts are given for each.
+	 * */
 	private void beginQuiz()
 	{	
 		String problemRetry = "That's incorrect - try a different answer: ";
@@ -43,6 +46,10 @@ public class CS106A_MathQuiz extends ConsoleProgram
 	}
 	
 	
+	/**
+	 * Generates a random math expression with one operator and two operands.
+	 * @return The math problem to be presented to the user as a String
+	 * */
 	private String generateRandomOperation()
 	{
 		r1 = rgen.nextInt(0, 10);
@@ -55,6 +62,11 @@ public class CS106A_MathQuiz extends ConsoleProgram
 	}
 	
 	
+	/**
+	 * Analyzes the user's answer compared against the expected answer.
+	 * @return A boolean value that determines whether the user's answer
+	 * matches the expected answer.
+	 * */
 	private boolean analyzeAnswer(int ans)
 	{
 		boolean result;
@@ -64,19 +76,10 @@ public class CS106A_MathQuiz extends ConsoleProgram
 		return result;
 	}
 	
-	//ask 5 questions ea. coded as a named const. so it can be changed
-	//ea q must consist of a single add or subt (chosen randomly). problem 
-	//...involving just 2 nums
-	//no num or answer should be less < 0 or > than 20 (2nd grade)
-	//give client 3 tries. move on to nxt q if 3 tries attempted.
-	
-	
-	
 	/** Private instance variables */
 	private int r1;
 	private int r2;
 	private String operator;
 	int expectedAnswer;
 	private static RandomGenerator rgen = RandomGenerator.getInstance();
-	private ArrayList<String> qArray = new ArrayList<String>();
 }
